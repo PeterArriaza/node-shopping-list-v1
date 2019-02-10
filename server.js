@@ -36,6 +36,8 @@ app.listen(process.env.PORT || 8080, () => {
     console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
 });
 
+// create /recipes endpoint get functionality
+
 const {
     Recipes
 } = require('./models.js');
