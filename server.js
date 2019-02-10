@@ -1,4 +1,3 @@
-
 const express = require('express');
 // we'll use morgan to log the HTTP layer
 const morgan = require('morgan');
@@ -8,7 +7,9 @@ const bodyParser = require('body-parser');
 
 // we import the ShoppingList model, which we'll
 // interact with in our GET endpoint
-const {ShoppingList} = require('./models');
+const {
+    ShoppingList
+} = require('./models');
 
 const jsonParser = bodyParser.json();
 const app = express();
@@ -28,9 +29,21 @@ ShoppingList.create('peppers', 4);
 // when the root of this route is called with GET, return
 // all current ShoppingList items by calling `ShoppingList.get()`
 app.get('/shopping-list', (req, res) => {
-  res.json(ShoppingList.get());
+    res.json(ShoppingList.get());
 });
 
 app.listen(process.env.PORT || 8080, () => {
-  console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
+    console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
+});
+
+const {
+    Recipes
+} = require('./models.js');
+
+Recipes.create('chocolate milk', ['cocoa', 'milk', 'sugar']);
+Recipes.create('clam chowder', ['clams', 'potatoes', 'cream']);
+Recipes.create('burrito', ['tortilla', 'beans', 'rice', 'peppers', 'cheese']);
+
+app.get('/recipes', (req, res) => {
+    res.json(Recipes.get());
 });
